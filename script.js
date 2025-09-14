@@ -78,7 +78,9 @@ function logout() {
 function showDashboard() {
     authSection.classList.add('hidden');
     dashboard.classList.remove('hidden');
-    setTimeout(() => dashboard.classList.add('visible'), 50);
+    // Force a reflow before adding visible class
+    dashboard.offsetHeight; 
+    dashboard.classList.add('visible');
 }
 
 function hideDashboard() {
