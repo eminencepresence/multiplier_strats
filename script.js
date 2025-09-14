@@ -54,8 +54,8 @@ async function login() {
             authToken = data.token;
             localStorage.setItem('authToken', authToken);
             showStatus('Access granted', 'success');
-            setTimeout(showDashboard, 500);
-            setTimeout(loadDashboardData, 800);
+            showDashboard();
+            loadDashboardData();
         } else {
             showStatus('Invalid admin key', 'error');
         }
