@@ -163,19 +163,23 @@ function updateHourlyChart(hourlyData) {
         type: 'bar',
         data: {
             labels: hourlyData.map(h => h.hour_of_day + ':00'),
-            datasets: [{
-                label: 'Total',
-                data: hourlyData.map(h => h.total_count),
-                backgroundColor: '#333',
-                borderColor: '#666',
-                borderWidth: 1
-            }, {
-                label: 'High (10x+)',
-                data: hourlyData.map(h => h.high_count),
-                backgroundColor: '#fff',
-                borderColor: '#fff',
-                borderWidth: 1
-            }]
+            datasets: [
+                {
+                    label: 'Blue',
+                    data: hourlyData.map(h => h.blue_count),
+                    backgroundColor: '#3b82f6'
+                },
+                {
+                    label: 'Purple',
+                    data: hourlyData.map(h => h.purple_count),
+                    backgroundColor: '#a855f7'
+                },
+                {
+                    label: 'Pink',
+                    data: hourlyData.map(h => h.pink_count),
+                    backgroundColor: '#ec4899'
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -189,10 +193,12 @@ function updateHourlyChart(hourlyData) {
             },
             scales: {
                 x: {
+                    stacked: true,
                     ticks: { color: '#666' },
                     grid: { color: '#222' }
                 },
                 y: {
+                    stacked: true,
                     beginAtZero: true,
                     ticks: { color: '#666' },
                     grid: { color: '#222' }
@@ -201,6 +207,7 @@ function updateHourlyChart(hourlyData) {
         }
     });
 }
+
 
 function updateCategoryChart(categoryData) {
     const ctx = document.getElementById('categoryChart').getContext('2d');
@@ -215,7 +222,7 @@ function updateCategoryChart(categoryData) {
             labels: categoryData.map(c => c.color_category),
             datasets: [{
                 data: categoryData.map(c => c.count),
-                backgroundColor: ['#333', '#666', '#999'],
+                backgroundColor: ['#3b82f6', '#a855f7', '#ec4899'],
                 borderColor: '#000',
                 borderWidth: 2
             }]
@@ -243,9 +250,12 @@ function updateTopMultipliers(topMultipliers) {
     topMultipliers.forEach((mult, index) => {
         const item = document.createElement('div');
         item.className = 'multiplier-item';
+        const color = mult.value >= 10 ? '#ec4899' : (mult.value >= 2 ? '#a855f7' : '#3b82f6');
         item.innerHTML = `
             <span class="multiplier-rank">#${index + 1}</span>
-            <span class="multiplier-value">${mult.value}x</span>
+            <span class="multiplier-value" style="background:${color};padding:2px 8px;border-radius:12px;color:#fff;font-size:0.85rem;">
+                ${mult.value}x
+            </span>
             <span class="multiplier-time">${new Date(mult.estimated_timestamp).toLocaleString()}</span>
         `;
         container.appendChild(item);
