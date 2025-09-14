@@ -89,6 +89,7 @@ button:disabled {
 .dashboard {
     opacity: 0;
     transition: opacity 0.3s;
+    display: block; /* Make sure this isn't set to none when hidden */
 }
 
 .dashboard.visible {
