@@ -3,22 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SportPesa Multiplier Analysis Dashboard</title>
+    <title>SportPesa Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>SportPesa Aviator Multiplier Analysis</h1>
-            <div class="auth-section">
-                <input type="password" id="adminKey" placeholder="Admin Key" />
-                <button id="loginBtn">Login</button>
-                <span id="status"></span>
+        <!-- Login Section -->
+        <div id="authSection" class="auth-section">
+            <h1>SportPesa Analytics</h1>
+            <div class="auth-form">
+                <input type="password" id="adminKey" placeholder="Enter admin key" />
+                <button id="loginBtn">Access Dashboard</button>
+                <div id="status" class="status"></div>
             </div>
-        </header>
+        </div>
 
-        <div id="dashboard" class="hidden">
+        <!-- Dashboard -->
+        <div id="dashboard" class="dashboard hidden">
+            <div class="dashboard-header">
+                <div class="dashboard-title">
+                    <h1>Aviator Analysis</h1>
+                </div>
+                <div class="user-info">
+                    <span id="lastUpdated">Never updated</span>
+                    <button id="logoutBtn" class="logout-btn">Logout</button>
+                </div>
+            </div>
+
             <div class="controls">
                 <select id="timePeriod">
                     <option value="1h">Last Hour</option>
@@ -26,47 +39,47 @@
                     <option value="24h" selected>Last 24 Hours</option>
                     <option value="7d">Last 7 Days</option>
                 </select>
-                <button id="refreshBtn">Refresh Data</button>
-                <div class="last-updated">Last updated: <span id="lastUpdated">Never</span></div>
+                <button id="refreshBtn" class="refresh-btn">Refresh</button>
             </div>
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <h3>Total Rounds</h3>
+                    <div class="stat-label">Total Rounds</div>
                     <div class="stat-value" id="totalRounds">-</div>
                 </div>
                 <div class="stat-card">
-                    <h3>Average Multiplier</h3>
+                    <div class="stat-label">Average</div>
                     <div class="stat-value" id="avgMultiplier">-</div>
                 </div>
                 <div class="stat-card">
-                    <h3>High Multipliers (10x+)</h3>
+                    <div class="stat-label">High (10x+)</div>
                     <div class="stat-value" id="highMultipliers">-</div>
                 </div>
                 <div class="stat-card">
-                    <h3>Extreme Multipliers (50x+)</h3>
+                    <div class="stat-label">Extreme (50x+)</div>
                     <div class="stat-value" id="extremeMultipliers">-</div>
                 </div>
             </div>
 
             <div class="charts-grid">
                 <div class="chart-container">
-                    <h3>Hourly Distribution</h3>
+                    <div class="chart-title">Hourly Distribution</div>
                     <canvas id="hourlyChart"></canvas>
                 </div>
                 <div class="chart-container">
-                    <h3>Category Distribution</h3>
+                    <div class="chart-title">Categories</div>
                     <canvas id="categoryChart"></canvas>
                 </div>
             </div>
 
             <div class="top-multipliers">
-                <h3>Top Multipliers</h3>
-                <div id="topMultipliersList"></div>
+                <div class="top-multipliers-header">
+                    <div class="top-multipliers-title">Top Multipliers</div>
+                </div>
+                <div class="multipliers-list" id="topMultipliersList"></div>
             </div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
