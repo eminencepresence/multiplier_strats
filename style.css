@@ -316,3 +316,13 @@ select option {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+
+
+.multiplier-value {
+    font-weight: 500;
+    display: inline-block;
+    min-width: 50px;
+    text-align: center;
+}
+
